@@ -1,0 +1,80 @@
+---
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Stupid Hackathon Thailand Portal</title>
+    <style>
+      body {
+        background: black;
+        font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir,
+          segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial,
+          sans-serif;
+      }
+      #events {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid: auto-flow / repeat(var(--column-count), 1fr);
+        list-style: none;
+        --column-count: 1;
+      }
+      @media (min-aspect-ratio: 1/2) {
+        #events {
+          --column-count: 2;
+        }
+      }
+      @media (min-aspect-ratio: 3/2) {
+        #events {
+          --column-count: 3;
+        }
+      }
+
+      .event {
+        position: relative;
+        background-size: cover;
+        background-repeat: none;
+        background-position: center;
+      }
+      .event > a {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: block;
+        text-decoration: none;
+      }
+      .event-info {
+        padding: 8px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #0009;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul id="events">
+        {% for event in site.data.events %}
+        <li class="event" style="background-image: url({{ event.image }})">
+          <a href="{{ event.url }}">
+            <div class="event-info">{{ event.title }}</div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </body>
+</html>
