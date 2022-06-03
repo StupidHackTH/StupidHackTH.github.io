@@ -1,0 +1,12 @@
+services:
+  web:
+    image: ghcr.io/actions/jekyll-build-pages
+    entrypoint: ''
+    init: true
+    command: 'bash -c "bundle && bundle exec jekyll serve"'
+    volumes:
+      - ./:/www
+      - /usr/local/lib/ruby
+    ports:
+      - '4000:4000'
+    working_dir: /www
